@@ -14,8 +14,8 @@ const styles = {
   },
   avatar: {
     margin: 10,
-    width: 300,
-    height: 300
+    width: 128,
+    height: 128
   }
 };
 

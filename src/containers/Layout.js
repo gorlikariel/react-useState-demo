@@ -10,26 +10,40 @@ export default class Layout extends Component {
       .then(response => response.json())
       .then(data => {
         console.log(data);
+        this.setState({ users: data });
       })
       .catch(error => console.log(error));
   }
-  state = {};
+  state = { users: null, currentUser: null, searchInput: null };
   render() {
     return (
       <div className="root">
         <div style={{ width: '100%' }}>
-          <TopNavbar />
+          <TopNavbar
+            searchChanged={value => this.setState({ searchInput: value })}
+          />
         </div>
         <div className="wrapper">
           <div className="left-box">
-            <Clients />
+            <Clients
+              searchInput={this.state.searchInput}
+              selectUser={userId => this.setState({ currentUser: userId })}
+              users={this.state.users}
+            />
           </div>
           <div className="right-box">
-            <ClientDetails
-              name="Dude"
-              company="Lorem Beepsum"
-              catchPhrase="is a catch!"
-            />
+            {this.state.users && this.state.currentUser ? (
+              <ClientDetails
+                name={this.state.users[this.state.currentUser - 1].name}
+                company={
+                  this.state.users[this.state.currentUser - 1].company.name
+                }
+                catchPhrase={
+                  this.state.users[this.state.currentUser - 1].company
+                    .catchPhrase
+                }
+              />
+            ) : null}
           </div>
         </div>
       </div>

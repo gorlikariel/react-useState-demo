@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -71,36 +71,40 @@ const styles = theme => ({
   }
 });
 
-function TopNavbar(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar variant="dense">
-          <Typography className={classes.title} variant="h5" color="inherit">
-            Users and stuff
-          </Typography>
-          <div className={classes.grow} />
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+class TopNavbar extends Component {
+  state = { searchInput: '' };
+  render() {
+    const { classes, searchChanged } = this.props;
+    return (
+      <div className={classes.root}>
+        <AppBar position="static">
+          <Toolbar variant="dense">
+            <Typography className={classes.title} variant="h5" color="inherit">
+              Users and stuff
+            </Typography>
+            <div className={classes.grow} />
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                value={this.state.searchInput}
+                onChange={e => {
+                  this.setState({ searchInput: e.target.value });
+                  searchChanged(e.target.value);
+                }}
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput
+                }}
+              />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput
-              }}
-            />
-          </div>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+          </Toolbar>
+        </AppBar>
+      </div>
+    );
+  }
 }
-
-TopNavbar.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default withStyles(styles)(TopNavbar);

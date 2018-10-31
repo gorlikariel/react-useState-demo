@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -14,7 +14,7 @@ const styles = {
     maxWidth: 345
   },
   media: {
-    height: 140
+    height: 150
   },
   root: {
     // padding: '40px'
@@ -23,11 +23,12 @@ const styles = {
   }
 };
 
-function ClientCard({ classes, name, company, catchPhrase }) {
+function ClientCard({ classes, name, company, catchPhrase, id, selectUser }) {
+  //   const [selectedUser, setSelectedUser] = useState(null);
   return (
     <div className={classes.root}>
       <Card className={classes.card}>
-        <CardActionArea>
+        <CardActionArea onClick={() => selectUser(id)}>
           <CardMedia
             className={classes.media}
             image="https://via.placeholder.com/600/a08784"
