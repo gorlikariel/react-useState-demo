@@ -17,12 +17,13 @@ const styles = {
     height: 140
   },
   root: {
-    padding: '40px'
+    // padding: '40px'
+    paddingTop: '20px',
+    paddingBottom: '20px'
   }
 };
 
-function ClientCard(props) {
-  const { classes } = props;
+function ClientCard({ classes, name, company, catchPhrase }) {
   return (
     <div className={classes.root}>
       <Card className={classes.card}>
@@ -34,22 +35,14 @@ function ClientCard(props) {
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
-              Lizard
+              {name}
             </Typography>
-            <Typography component="p">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
+            <Typography gutterBottom variant="h6" component="h2">
+              {company}
             </Typography>
+            <Typography component="p">{catchPhrase} </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            Share
-          </Button>
-          <Button size="small" color="primary">
-            Learn More
-          </Button>
-        </CardActions>
       </Card>
     </div>
   );

@@ -76,7 +76,7 @@ function TopNavbar(props) {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar>
+        <Toolbar variant="dense">
           <Typography className={classes.title} variant="h5" color="inherit">
             Users and stuff
           </Typography>
