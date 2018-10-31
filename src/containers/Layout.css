@@ -1,0 +1,28 @@
+body {
+  background-color: whitesmoke;
+}
+.root {
+  height: 100vh;
+}
+.wrapper {
+  display: grid;
+  width: 100%;
+  height: 90%;
+  grid-template-areas:
+    ' left-box left-box right-box'
+    ' left-box left-box right-box';
+  grid-template-columns: 5fr 5fr 5fr;
+
+  color: #444;
+}
+.left-box {
+  grid-area: left-box;
+  /* display: flex; */
+}
+.right-box {
+  border-left: solid 1px #c8c8d7;
+  grid-area: right-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
