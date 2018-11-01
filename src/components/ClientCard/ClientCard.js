@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -11,13 +10,11 @@ const styles = {
   card: {
     maxWidth: 345,
     width: 300
-    // height: 450
   },
   media: {
     height: 200
   },
   root: {
-    // padding: '40px'
     paddingTop: '20px',
     paddingBottom: '20px'
   }
@@ -62,10 +59,6 @@ const ClientCard = ({
       </Card>
     </div>
   );
-};
-
-ClientCard.propTypes = {
-  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(ClientCard);

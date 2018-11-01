@@ -23,7 +23,6 @@ const styles = theme => ({
   },
   title: {
     display: 'none',
-    paddingLeft: '10px',
     [theme.breakpoints.up('sm')]: {
       display: 'block'
     }
@@ -79,8 +78,8 @@ class TopNavbar extends Component {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar variant="dense">
-            <Typography className={classes.title} variant="h5" color="inherit">
-              Users and stuff
+            <Typography className={classes.title} variant="h6" color="inherit">
+              Generic Client List
             </Typography>
             <div className={classes.grow} />
             <div className={classes.search}>

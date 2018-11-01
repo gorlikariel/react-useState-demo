@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
-import { Typography } from '@material-ui/core';
+import { Typography, IconButton } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Cancel';
 
 const styles = {
   root: {
     borderRadius: '20%'
   },
   image: {
+    marginBottom: '20px',
     display: 'flex',
     width: '100%',
     flexDirection: 'column',
@@ -19,12 +21,30 @@ const styles = {
     margin: 10,
     width: 128,
     height: 128
+  },
+  deleteIcon: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    padding: '15px'
+  },
+  text: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'left',
+    paddingLeft: '25px'
   }
 };
 
-function ClientDetails({ classes, name, company, catchPhrase }) {
+const ClientDetails = ({ classes, name, company, catchPhrase, unSelect }) => {
   return (
     <>
+      <div className={classes.deleteIcon}>
+        <IconButton onClick={() => unSelect()}>
+          <DeleteIcon />
+        </IconButton>
+      </div>
+
       <div className={classes.root}>
         <div className={classes.image}>
           <Avatar
@@ -33,14 +53,7 @@ function ClientDetails({ classes, name, company, catchPhrase }) {
             className={classes.avatar}
           />
         </div>
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'left',
-            paddingLeft: '25px'
-          }}
-        >
+        <div className={classes.text}>
           <Typography variant="title">NAME:</Typography>
           <Typography color="textSecondary" variant="h6">
             {name}
@@ -58,7 +71,7 @@ function ClientDetails({ classes, name, company, catchPhrase }) {
       </div>
     </>
   );
-}
+};
 
 ClientDetails.propTypes = {
   classes: PropTypes.object.isRequired
