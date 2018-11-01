@@ -32,11 +32,19 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'left',
-    paddingLeft: '25px'
+    paddingLeft: '15px',
+    paddingBottom: '25px'
   }
 };
 
-const ClientDetails = ({ classes, name, company, catchPhrase, unSelect }) => {
+const ClientDetails = ({
+  classes,
+  name,
+  company,
+  catchPhrase,
+  unSelect,
+  large
+}) => {
   return (
     <>
       <div className={classes.deleteIcon}>
@@ -47,11 +55,7 @@ const ClientDetails = ({ classes, name, company, catchPhrase, unSelect }) => {
 
       <div className={classes.root}>
         <div className={classes.image}>
-          <Avatar
-            alt={name}
-            src="https://via.placeholder.com/150/a08784"
-            className={classes.avatar}
-          />
+          <Avatar alt={name} src={large} className={classes.avatar} />
         </div>
         <div className={classes.text}>
           <Typography variant="title">NAME:</Typography>
@@ -71,10 +75,6 @@ const ClientDetails = ({ classes, name, company, catchPhrase, unSelect }) => {
       </div>
     </>
   );
-};
-
-ClientDetails.propTypes = {
-  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(ClientDetails);
