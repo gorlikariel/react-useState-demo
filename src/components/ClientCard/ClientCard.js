@@ -3,18 +3,18 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const styles = {
   card: {
-    maxWidth: 345
+    maxWidth: 345,
+    width: 300
+    // height: 450
   },
   media: {
-    height: 150
+    height: 200
   },
   root: {
     // padding: '40px'
@@ -23,11 +23,26 @@ const styles = {
   }
 };
 
-function ClientCard({ classes, name, company, catchPhrase, id, selectUser }) {
-  //   const [selectedUser, setSelectedUser] = useState(null);
+const ClientCard = ({
+  classes,
+  name,
+  company,
+  catchPhrase,
+  id,
+  selectUser
+}) => {
+  const [raised, setRaised] = useState(false);
   return (
-    <div className={classes.root}>
-      <Card className={classes.card}>
+    <div
+      onTouchStartCapture={() => {
+        setRaised(true);
+      }}
+      onTouchEndCapture={() => {
+        setRaised(false);
+      }}
+      className={classes.root}
+    >
+      <Card raised={raised} className={classes.card}>
         <CardActionArea onClick={() => selectUser(id)}>
           <CardMedia
             className={classes.media}
@@ -35,7 +50,7 @@ function ClientCard({ classes, name, company, catchPhrase, id, selectUser }) {
             title="Contemplative Reptile"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography gutterBottom variant="h5" component="h2" noWrap>
               {name}
             </Typography>
             <Typography gutterBottom variant="h6" component="h2">
@@ -47,7 +62,7 @@ function ClientCard({ classes, name, company, catchPhrase, id, selectUser }) {
       </Card>
     </div>
   );
-}
+};
 
 ClientCard.propTypes = {
   classes: PropTypes.object.isRequired

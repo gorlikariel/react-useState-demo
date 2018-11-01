@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import LayoutCss from './Layout.css';
-import TopNavbar from '../components/TopNavbar/TopNavbar';
-import Clients from './Clients/Clients';
-import ClientDetails from '../components/ClientDetails/ClientDetails';
+import TopNavbar from '../../components/TopNavbar/TopNavbar';
+import Clients from '../Clients/Clients';
+import ClientDetails from '../../components/ClientDetails/ClientDetails';
 
 export default class Layout extends Component {
   componentDidMount() {
@@ -12,17 +12,18 @@ export default class Layout extends Component {
         console.log(data);
         this.setState({ users: data });
       })
+      .then(fetch('https://randomuser.me/api/?page=3&results=10&seed=abc'))
+      .then(res => res.json())
+      .then(res => console.log(res))
       .catch(error => console.log(error));
   }
   state = { users: null, currentUser: null, searchInput: null };
   render() {
     return (
       <div className="root">
-        <div style={{ width: '100%' }}>
-          <TopNavbar
-            searchChanged={value => this.setState({ searchInput: value })}
-          />
-        </div>
+        <TopNavbar
+          searchChanged={value => this.setState({ searchInput: value })}
+        />
         <div className="wrapper">
           <div className="left-box">
             <Clients

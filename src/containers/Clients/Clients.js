@@ -8,39 +8,43 @@ export default class Layout extends Component {
     return (
       <div
         style={{
-          display: 'grid',
-          gridTemplateRows: 'auto 1fr auto',
-          gridTemplateColumns: '1fr 1fr 1fr'
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          alignContent: 'center'
         }}
       >
-        {users
-          ? users.map(user => {
-              if (!user.name.search(searchInput)) {
-                return (
-                  <ClientCard
-                    selectUser={selectUser}
-                    id={user.id}
-                    key={user.name}
-                    name={user.name}
-                    company={user.company.name}
-                    catchPhrase={user.company.catchPhrase}
-                  />
-                );
-              }
-              if (!searchInput) {
-                return (
-                  <ClientCard
-                    selectUser={selectUser}
-                    id={user.id}
-                    key={user.name}
-                    name={user.name}
-                    company={user.company.name}
-                    catchPhrase={user.company.catchPhrase}
-                  />
-                );
-              }
-            })
-          : null}
+        <div className="clients">
+          {users
+            ? users.map(user => {
+                if (!user.name.search(searchInput)) {
+                  return (
+                    <ClientCard
+                      selectUser={selectUser}
+                      id={user.id}
+                      key={user.name}
+                      name={user.name}
+                      company={user.company.name}
+                      catchPhrase={user.company.catchPhrase}
+                    />
+                  );
+                }
+                if (!searchInput) {
+                  return (
+                    <ClientCard
+                      selectUser={selectUser}
+                      id={user.id}
+                      key={user.name}
+                      name={user.name}
+                      company={user.company.name}
+                      catchPhrase={user.company.catchPhrase}
+                    />
+                  );
+                }
+              })
+            : null}
+        </div>
       </div>
     );
   }
